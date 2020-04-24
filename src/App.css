@@ -21,13 +21,14 @@
   color: #09d3ac;
 }
 
-body, html {
+body,
+html {
   height: 100%;
   background-repeat: no-repeat;
   font-family: Arial !important;
 }
 
-.backgroundLogin {
+.backgroundColor {
   background-color: #b3ce27;
 }
 
@@ -42,7 +43,7 @@ body, html {
 
 .card-container {
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
   width: 60%;
   border: 1px #b3ce27 solid;
@@ -53,7 +54,7 @@ body, html {
   border: 1px #b3ce27 solid;
   height: 30vh;
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
   flex-flow: row nowrap;
   width: 50%;
@@ -90,7 +91,7 @@ body, html {
   align-items: center;
 }
 
-.btn-login{
+.btn-login {
   width: 30%;
 }
 
@@ -110,7 +111,7 @@ body, html {
   border-radius: 3px;
 }
 
-.commondFieldset{
+.commondFieldset {
   border: 1px black solid;
   padding: 20px;
   margin-left: 20px;
@@ -120,7 +121,7 @@ body, html {
   border-radius: 3px;
 }
 
-.commondFieldsetLabel{
+.commondFieldsetLabel {
   margin-left: 20px;
 }
 
@@ -132,11 +133,13 @@ body, html {
   border-radius: 3px;
 }
 
-.labelForm{
+.labelForm {
   margin-top: 8px;
 }
 
-.bottoneRicerca {margin-top: 25px;}
+.bottoneRicerca {
+  margin-top: 25px;
+}
 
 .verifyRegistry {
   border: 1px black solid;
