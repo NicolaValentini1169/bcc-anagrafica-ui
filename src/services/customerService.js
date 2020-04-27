@@ -1,7 +1,7 @@
 import http from "./httpService";
 import config from "../config.json";
 
-export function getCostumer(params) {
+export function getCustomer(params) {
   return http.get(config.apiClienteEndpoint, setParams(params));
 }
 
@@ -13,7 +13,7 @@ function setParams(params) {
     params.birthDate = birthDateOnJavaFormat;
   } else delete params.birthDate;
 
-  if (!params.customerName) delete params.customerName;
+  if (params.customerName === "") delete params.customerName;
 
   // set branch from string to number
   params.branch = parseInt(params.branch);

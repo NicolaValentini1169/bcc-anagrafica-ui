@@ -69,7 +69,8 @@ class App extends Component {
           );
         } else {
           this.props.history.replace(
-            window.defConfigurations.url_prefix + ROUTES.IMPORTA_CLIENTI
+            window.defConfigurations.url_prefix +
+              ROUTES./*IMPORTA_CLIENTI*/ RICERCA_CLIENTI
           );
         }
       })
@@ -89,7 +90,7 @@ class App extends Component {
             )}
           />
           <Route
-            path={window.defConfigurations.url_prefix + "search"}
+            path={window.defConfigurations.url_prefix + ROUTES.RICERCA_CLIENTI}
             exact
             render={(props) => <SearchingPage {...props} />}
           />

@@ -2,11 +2,11 @@ import React from "react";
 import Joi from "joi-browser";
 import Form from "./common/form";
 import { getBranch } from "../services/branchService";
-import { getCostumer } from "../services/costumerService";
+import { getCustomer } from "../services/customerService";
 
 class SearchBox extends Form {
   state = {
-    data: { branch: 0, nag: "", customerName: null, birthDate: null },
+    data: { branch: 0, nag: "", customerName: "", birthDate: null },
     errors: "",
     branchs: [],
   };
@@ -14,24 +14,28 @@ class SearchBox extends Form {
   async componentDidMount() {
     const { data: branchs } = await getBranch();
     this.setState({ branchs });
-
-    // sistemare catch
   }
 
   schema = {
-    branch: Joi.number().required().label("Branch"),
+    branch: Joi.number().required().label("Branch").invalid(0),
     // poi dovra essere messo min(6)
-    nag: Joi.string().required().min(2).label("Nag"),
-    customerName: Joi.string().label("Name").allow(null),
-    birthDate: Joi.date().label("birthDate").allow(null),
+    nag: Joi.string().required().min(1).label("Nag"),
+    customerName: Joi.string().label("Name").allow(""),
+    birthDate: Joi.date()
+      .min("1900-01-01")
+      .max(Date.now())
+      .label("birthDate")
+      .allow(null),
   };
 
   doSubmit = async () => {
-    const { data: costumer } = await getCostumer(this.state.data);
-    console.log("costumer", costumer);
-
-    // da passare a SearchingPage
-    // sistemare catch
+    try {
+      const { data: customers } = await getCustomer(this.state.data);
+      this.props.saveCustomers(customers);
+      // this.setState({ birthDate: null });
+    } catch (ex) {
+      this.errorDetected(ex.message);
+    }
   };
 
   errorDetected(errorMessage) {
@@ -44,11 +48,11 @@ class SearchBox extends Form {
     const { errors, branchs } = this.state;
 
     return (
-      <div class="card card-body">
+      <div class="card search-card-container">
         <form className="form" onSubmit={this.handleSubmit}>
           <div className="row">
             <div className="col-md-3">
-              {this.renderSelect("branch", "Select a branch*", branchs)}
+              {this.renderSelect("branch", "Seleziona una filiale*", branchs)}
             </div>
             <div className="col-md-3">
               {this.renderInput("nag", {
@@ -57,7 +61,7 @@ class SearchBox extends Form {
             </div>
             <div className="col-md-3">
               {this.renderInput("customerName", {
-                placeholder: "Name",
+                placeholder: "Nome",
               })}
             </div>
             <div className="col-md-3">
@@ -67,7 +71,7 @@ class SearchBox extends Form {
 
           <div className="row">
             <div class="col-md-6">
-              <p class="card-text float-left">*Required field.</p>
+              <p class="card-text float-left">*Campi Obbligatori.</p>
               {errors !== "" && (
                 <p className="card-text text-danger float-left">{errors}</p>
               )}
@@ -75,9 +79,9 @@ class SearchBox extends Form {
             <div class="col-md-6">
               <button
                 disabled={this.validate()}
-                className="btn btn-primary float-right"
+                className="btn btn-success float-right"
               >
-                Search
+                Cerca
               </button>
             </div>
           </div>

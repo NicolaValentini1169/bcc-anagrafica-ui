@@ -1,17 +1,25 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import SearchBox from "./SearchBox";
+import SearchTable from "./SearchTable";
 
-class SearchingPage extends Component {
-  state = {};
+function SearchingPage(props) {
+  const [customers, setCustomers] = useState(null);
 
-  render() {
-    return (
-      <div className="backgroundColor">
-        <h1>Search Costumer</h1>
-        <SearchBox />
+  return (
+    <div className="backgroundColor">
+      <div
+        className="container"
+        style={{
+          "justify-content": "flex-start",
+          "background-color": "white",
+        }}
+      >
+        <h1>Ricerca Clienti</h1>
+        <SearchBox saveCustomers={(customers) => setCustomers(customers)} />
+        <SearchTable customers={customers} />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default SearchingPage;
