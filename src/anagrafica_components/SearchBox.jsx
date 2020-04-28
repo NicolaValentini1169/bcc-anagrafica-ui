@@ -3,8 +3,11 @@ import Joi from "joi-browser";
 import Form from "./common/form";
 import { getBranch } from "../services/branchService";
 import { getCustomer } from "../services/customerService";
+import CustomersContext from "./../context/customersContext";
 
 class SearchBox extends Form {
+  static contextType = CustomersContext;
+
   state = {
     data: { branch: 0, nag: "", customerName: "", birthDate: null },
     errors: "",
@@ -30,11 +33,12 @@ class SearchBox extends Form {
 
   doSubmit = async () => {
     try {
-      const { data: customers } = await getCustomer(this.state.data);
-      this.props.saveCustomers(customers);
-      // this.setState({ birthDate: null });
+      const dataToSend = { ...this.state.data };
+      const { data: customers } = await getCustomer(dataToSend);
+
+      this.context.saveCustomers(customers);
     } catch (ex) {
-      this.errorDetected(ex.message);
+      this.errorDetected(ex);
     }
   };
 

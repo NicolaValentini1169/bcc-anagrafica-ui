@@ -64,6 +64,19 @@ html {
   height: 20%;
 }
 
+.customer-card-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  border-bottom: 2px #b3ce27 solid;
+  border-top: 2px #b3ce27 solid;
+  border-left: 0px;
+  border-right: 0px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
 .containerOperation {
   border: 1px #b3ce27 solid;
   height: 30vh;

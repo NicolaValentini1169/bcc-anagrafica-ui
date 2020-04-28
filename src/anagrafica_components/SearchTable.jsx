@@ -4,8 +4,11 @@ import Table from "./common/table";
 import _ from "lodash";
 import { paginate } from "../utils/paginate";
 import Pagination from "./common/pagination";
+import CustomersContext from "./../context/customersContext";
 
 class SearchTable extends Component {
+  static contextType = CustomersContext;
+
   state = {
     columns: [
       { path: "filiali.nome", label: "Filiale" },
@@ -14,8 +17,8 @@ class SearchTable extends Component {
       { path: "dataNascita", label: "Data di nascita" },
       {
         key: "details",
-        content: (customers) => (
-          <Link className="btn btn-success" to={`/cliente/${customers.id}`}>
+        content: (customer) => (
+          <Link className="btn btn-success" to={`/cliente/${customer.id}`}>
             Dettagli
           </Link>
         ),
@@ -43,7 +46,7 @@ class SearchTable extends Component {
 
   getPagedData = () => {
     const { pageSize, currentPage, sortColumn } = this.state;
-    const { customers: allCustomers } = this.props;
+    const { customers: allCustomers } = this.context;
 
     if (allCustomers) {
       if (allCustomers.length === 0) {

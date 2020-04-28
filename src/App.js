@@ -7,7 +7,9 @@ import axios from "axios";
 import config from "./config.json";
 import dotenv from "dotenv";
 import SearchingPage from "./anagrafica_components/SearchingPage";
+import CustomerPage from "./anagrafica_components/CustomerPage";
 import authService from "./services/authService";
+import CustomersContext from "./context/customersContext";
 
 dotenv.config();
 
@@ -15,6 +17,7 @@ class App extends Component {
   state = {
     userType: null,
     username: "",
+    customers: null,
   };
 
   UNSAFE_componentWillMount() {
@@ -70,32 +73,52 @@ class App extends Component {
         } else {
           this.props.history.replace(
             window.defConfigurations.url_prefix +
-              ROUTES./*IMPORTA_CLIENTI*/ RICERCA_CLIENTI
+              ROUTES.RICERCA_CLIENTI /*IMPORTA_CLIENTI*/
           );
         }
       })
       .catch((err) => console.log(err.response));
   };
 
+  setCustomers = (customers) => {
+    this.setState({ customers });
+  };
+
   render() {
     // const { userType } = this.state;
     return (
       <div className="App">
-        <Switch>
-          <Route
-            path={window.defConfigurations.url_prefix + ROUTES.LOGIN}
-            exact
-            render={(props) => (
-              <Login {...props} handleLogin={this.handleLogin} />
-            )}
-          />
-          <Route
-            path={window.defConfigurations.url_prefix + ROUTES.RICERCA_CLIENTI}
-            exact
-            render={(props) => <SearchingPage {...props} />}
-          />
-          {/* <Redirect from="/" to={this.state.userType === USER_TYPE.USER && this.state.username !== "" ? window.defConfigurations.url_prefix + "ricerca-clienti" : this.state.username !== "" ? window.defConfigurations.url_prefix + "importa-clienti" : window.defConfigurations.url_prefix + "login"} /> */}
-        </Switch>
+        <CustomersContext.Provider
+          value={{
+            customers: this.state.customers,
+            saveCustomers: this.setCustomers,
+          }}
+        >
+          <Switch>
+            <Route
+              path={window.defConfigurations.url_prefix + ROUTES.LOGIN}
+              exact
+              render={(props) => (
+                <Login {...props} handleLogin={this.handleLogin} />
+              )}
+            />
+            <Route
+              path={
+                window.defConfigurations.url_prefix + ROUTES.RICERCA_CLIENTI
+              }
+              exact
+              render={(props) => (
+                <SearchingPage saveCustomers={this.setCustomers} {...props} />
+              )}
+            />
+            <Route
+              path={window.defConfigurations.url_prefix + "cliente/:id"}
+              exact
+              render={(props) => <CustomerPage {...props} />}
+            />
+            {/* <Redirect from="/" to={this.state.userType === USER_TYPE.USER && this.state.username !== "" ? window.defConfigurations.url_prefix + "ricerca-clienti" : this.state.username !== "" ? window.defConfigurations.url_prefix + "importa-clienti" : window.defConfigurations.url_prefix + "login"} /> */}
+          </Switch>
+        </CustomersContext.Provider>
       </div>
     );
   }

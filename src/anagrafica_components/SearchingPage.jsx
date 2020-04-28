@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import SearchBox from "./SearchBox";
 import SearchTable from "./SearchTable";
 
 function SearchingPage(props) {
-  const [customers, setCustomers] = useState(null);
-
   return (
     <div className="backgroundColor">
       <div
@@ -15,8 +13,8 @@ function SearchingPage(props) {
         }}
       >
         <h1>Ricerca Clienti</h1>
-        <SearchBox saveCustomers={(customers) => setCustomers(customers)} />
-        <SearchTable customers={customers} />
+        <SearchBox />
+        <SearchTable {...props} />
       </div>
     </div>
   );
