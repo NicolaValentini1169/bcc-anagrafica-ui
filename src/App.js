@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-import "./App.css";
-import { withRouter, Route, Switch } from "react-router-dom";
+import { withRouter, Route, Switch, Redirect } from "react-router-dom";
+import axios from "axios";
+import dotenv from "dotenv";
+
 import { Login } from "./anagrafica_components/Login";
 import { USER_TYPE, ROUTES } from "./anagrafica_components/common/Constants";
-import axios from "axios";
 import config from "./config.json";
-import dotenv from "dotenv";
 import SearchingPage from "./anagrafica_components/SearchingPage";
 import CustomerPage from "./anagrafica_components/CustomerPage";
 import authService from "./services/authService";
 import CustomersContext from "./context/customersContext";
+import PrivateRoute from "./anagrafica_components/common/privateRoute";
+
+import "./App.css";
 
 dotenv.config();
 
@@ -102,7 +105,7 @@ class App extends Component {
                 <Login {...props} handleLogin={this.handleLogin} />
               )}
             />
-            <Route
+            <PrivateRoute
               path={
                 window.defConfigurations.url_prefix + ROUTES.RICERCA_CLIENTI
               }
@@ -111,11 +114,14 @@ class App extends Component {
                 <SearchingPage saveCustomers={this.setCustomers} {...props} />
               )}
             />
-            <Route
-              path={window.defConfigurations.url_prefix + "cliente/:id"}
+            <PrivateRoute
+              path={
+                window.defConfigurations.url_prefix + ROUTES.VISUALIZZA_CLIENTE
+              }
               exact
               render={(props) => <CustomerPage {...props} />}
             />
+            <Redirect to={window.defConfigurations.url_prefix + ROUTES.LOGIN} />
             {/* <Redirect from="/" to={this.state.userType === USER_TYPE.USER && this.state.username !== "" ? window.defConfigurations.url_prefix + "ricerca-clienti" : this.state.username !== "" ? window.defConfigurations.url_prefix + "importa-clienti" : window.defConfigurations.url_prefix + "login"} /> */}
           </Switch>
         </CustomersContext.Provider>

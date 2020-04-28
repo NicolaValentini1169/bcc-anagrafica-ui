@@ -18,7 +18,10 @@ class SearchTable extends Component {
       {
         key: "details",
         content: (customer) => (
-          <Link className="btn btn-success" to={`/cliente/${customer.id}`}>
+          <Link
+            className="btn btn-success"
+            to={`/visualizza-cliente/${customer.id}`}
+          >
             Dettagli
           </Link>
         ),

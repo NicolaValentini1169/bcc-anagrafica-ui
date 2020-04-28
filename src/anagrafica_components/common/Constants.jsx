@@ -59,6 +59,7 @@ export const ROUTES = {
   LOGIN: "login",
   RICERCA_CLIENTI: "ricerca-clienti",
   IMPORTA_CLIENTI: "importa-clienti",
+  VISUALIZZA_CLIENTE: "visualizza-cliente/:id",
   RICERCA_COMPLETATA: "ricerca-completata",
   REPORT: "report",
 };
