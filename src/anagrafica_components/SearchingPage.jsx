@@ -5,13 +5,7 @@ import SearchTable from "./SearchTable";
 function SearchingPage(props) {
   return (
     <div className="backgroundColor">
-      <div
-        className="container"
-        style={{
-          "justify-content": "flex-start",
-          "background-color": "white",
-        }}
-      >
+      <div className="container page-container">
         <h1>Ricerca Clienti</h1>
         <SearchBox />
         <SearchTable {...props} />

@@ -16,7 +16,7 @@ class CustomerPage extends Component {
       codice: LABELS.CODICE_UNIVOCO,
       firma: LABELS.FIRMA_GRAFOMETRICA,
     },
-    branchLabels: { cab: "Codice Filiale:", filiali: "Filiale:" },
+    branchLabels: { cab: LABELS.CAB, filiali: LABELS.FILIALE_TO_SHOW },
     privacyLabels: {
       p1: REPORT_LABELS.P1,
       p2: REPORT_LABELS.P2,
@@ -24,7 +24,7 @@ class CustomerPage extends Component {
       p4: REPORT_LABELS.P4,
       p5: REPORT_LABELS.P5,
       p6: REPORT_LABELS.P6,
-      //p7: REPORT_LABELS.P7,
+      p7: REPORT_LABELS.P7,
     },
   };
 
@@ -42,13 +42,7 @@ class CustomerPage extends Component {
 
     return (
       <div className="backgroundColor">
-        <div
-          className="container"
-          style={{
-            "justify-content": "flex-start",
-            "background-color": "white",
-          }}
-        >
+        <div className="container page-container">
           <h1>Profilo Cliente</h1>
           <GridCard
             title={LABELS.CLIENTE}

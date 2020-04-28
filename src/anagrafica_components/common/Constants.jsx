@@ -4,8 +4,10 @@ export const USER_TYPE = {
 };
 
 export const LABELS = {
+  CAB: "Cab:",
   RICERCA_CLIENTE: "Ricerca Clienti",
   FILIALE: "* Filiale:",
+  FILIALE_TO_SHOW: "Filiale:",
   NAG: "* NAG:",
   NAG_TO_SHOW: "NAG",
   NOME: "Nome:",
@@ -53,6 +55,7 @@ export const REPORT_LABELS = {
   P4: "Privacy 4:",
   P5: "Privacy 5:",
   P6: "Privacy 6:",
+  P7: "Privacy 7:",
 };
 
 export const ROUTES = {

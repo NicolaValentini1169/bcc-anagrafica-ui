@@ -54,6 +54,11 @@ th {
   height: 70vh;
 }
 
+.page-container {
+  justify-content: flex-start !important;
+  background-color: white !important;
+}
+
 .search-card-container {
   display: flex;
   align-items: center;
@@ -68,7 +73,7 @@ th {
   height: 20%;
 }
 
-.customer-card-container {
+.grid-card-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,6 +84,11 @@ th {
   border-right: 0px;
   margin-top: 1%;
   margin-bottom: 1%;
+}
+
+.card-header {
+  border-bottom: 2px #b3ce27 solid !important;
+  width: 100% !important;
 }
 
 .page-item.active .page-link {

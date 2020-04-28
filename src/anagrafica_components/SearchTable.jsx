@@ -1,28 +1,30 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Table from "./common/table";
 import _ from "lodash";
+
+import Table from "./common/table";
 import { paginate } from "../utils/paginate";
 import Pagination from "./common/pagination";
 import CustomersContext from "./../context/customersContext";
+import { ROUTES, LABELS } from "./common/Constants";
 
 class SearchTable extends Component {
   static contextType = CustomersContext;
 
   state = {
     columns: [
-      { path: "filiali.nome", label: "Filiale" },
-      { path: "nag", label: "Nag" },
-      { path: "nome", label: "Nome" },
-      { path: "dataNascita", label: "Data di nascita" },
+      { path: "filiali.nome", label: LABELS.FILIALE_TO_SHOW },
+      { path: "nag", label: LABELS.NAG_TO_SHOW },
+      { path: "nome", label: LABELS.NOME },
+      { path: "dataNascita", label: LABELS.DATA_DI_NASCITA },
       {
-        key: "details",
+        key: "dattaglio",
         content: (customer) => (
           <Link
             className="btn btn-success"
-            to={`/visualizza-cliente/${customer.id}`}
+            to={ROUTES.VISUALIZZA_CLIENTE + `/${customer.id}`}
           >
-            Dettagli
+            {LABELS.DETTAGLIO}
           </Link>
         ),
       },
@@ -56,7 +58,7 @@ class SearchTable extends Component {
         return {
           totalCount: 0,
           customers: [],
-          message: "Clienti non trovato.",
+          message: LABELS.NESSUNA_CORRISPONDENZA,
         };
       } else {
         let sorted = _.orderBy(
@@ -69,14 +71,18 @@ class SearchTable extends Component {
         return {
           totalCount: allCustomers.length,
           customers,
-          message: allCustomers.length + " clienti trovati.",
+          message:
+            LABELS.OPERAZIONE_COMPLETATA +
+            ", " +
+            allCustomers.length +
+            " clienti trovati.",
         };
       }
     } else {
       return {
         totalCount: 0,
         customers: [],
-        message: "Cerca dei clienti.",
+        message: LABELS.NUOVA_RICERCA,
       };
     }
   };

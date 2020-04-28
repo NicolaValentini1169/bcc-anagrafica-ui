@@ -4,6 +4,7 @@ import Form from "./common/form";
 import { getBranch } from "../services/branchService";
 import { getCustomer } from "../services/customerService";
 import CustomersContext from "./../context/customersContext";
+import { LABELS } from "./common/Constants";
 
 class SearchBox extends Form {
   static contextType = CustomersContext;
@@ -38,7 +39,7 @@ class SearchBox extends Form {
 
       this.context.saveCustomers(customers);
     } catch (ex) {
-      this.errorDetected(ex);
+      this.errorDetected(ex.message);
     }
   };
 
@@ -56,16 +57,16 @@ class SearchBox extends Form {
         <form className="form" onSubmit={this.handleSubmit}>
           <div className="row">
             <div className="col-md-3">
-              {this.renderSelect("branch", "Seleziona una filiale*", branchs)}
+              {this.renderSelect("branch", LABELS.FILIALE, branchs)}
             </div>
             <div className="col-md-3">
               {this.renderInput("nag", {
-                placeholder: "Nag*",
+                placeholder: LABELS.NAG,
               })}
             </div>
             <div className="col-md-3">
               {this.renderInput("customerName", {
-                placeholder: "Nome",
+                placeholder: LABELS.NOME,
               })}
             </div>
             <div className="col-md-3">
@@ -75,9 +76,11 @@ class SearchBox extends Form {
 
           <div className="row">
             <div class="col-md-6">
-              <p class="card-text float-left">*Campi Obbligatori.</p>
+              <p class="card-text float-left">{LABELS.CAMPI_OBBLIGATORI}</p>
               {errors !== "" && (
-                <p className="card-text text-danger float-left">{errors}</p>
+                <p className="card-text text-danger float-left">
+                  Errore {errors}
+                </p>
               )}
             </div>
             <div class="col-md-6">
@@ -85,7 +88,7 @@ class SearchBox extends Form {
                 disabled={this.validate()}
                 className="btn btn-success float-right"
               >
-                Cerca
+                {LABELS.CERCA}
               </button>
             </div>
           </div>
