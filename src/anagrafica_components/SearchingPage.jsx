@@ -1,15 +1,18 @@
 import React from "react";
-import SearchBox from "./SearchBox";
-import SearchTable from "./SearchTable";
+import { Redirect } from "react-router-dom";
+
+import SearchingBox from "./SearchingBox";
+import SearchingTable from "./SearchingTable";
+import auth from "../services/authService";
+import { ROUTES } from "./common/Constants";
 
 function SearchingPage(props) {
+  if (!auth.getJwt()) return <Redirect to={"/" + ROUTES.LOGIN} />;
+
   return (
-    <div className="backgroundColor">
-      <div className="container page-container">
-        <h1>Ricerca Clienti</h1>
-        <SearchBox />
-        <SearchTable {...props} />
-      </div>
+    <div className="container page-container">
+      <SearchingBox />
+      <SearchingTable {...props} />
     </div>
   );
 }

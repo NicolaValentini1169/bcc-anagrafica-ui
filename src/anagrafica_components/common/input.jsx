@@ -1,14 +1,12 @@
 import React from "react";
 
-const Input = ({ name, ...rest }) => {
+const Input = ({ name, label, ...rest }) => {
   return (
     <div className="form-group">
-      <input
-        {...rest}
-        name={name}
-        id={name}
-        className="labelForm form-control"
-      />
+      <label className="labelForm float-left" for={label}>
+        {label}
+      </label>
+      <input {...rest} name={name} id={name} className="form-control " />
     </div>
   );
 };

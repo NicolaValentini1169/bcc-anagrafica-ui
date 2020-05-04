@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import _ from "lodash";
 
-import Table from "./common/table";
+import Table from "./common/Table";
 import { paginate } from "../utils/paginate";
-import Pagination from "./common/pagination";
-import CustomersContext from "./../context/customersContext";
-import { ROUTES, LABELS } from "./common/Constants";
+import Pagination from "./common/Pagination";
+import CustomersContext from "../context/CustomersContext";
+import { LABELS } from "./common/Constants";
+import CustomerModal from "./CustomerModal";
+import Spinner from "./common/Spinner";
 
-class SearchTable extends Component {
+class SearchingTable extends Component {
   static contextType = CustomersContext;
 
   state = {
@@ -20,24 +21,27 @@ class SearchTable extends Component {
       {
         key: "dattaglio",
         content: (customer) => (
-          <Link
+          <button
             className="btn btn-success"
-            to={ROUTES.VISUALIZZA_CLIENTE + `/${customer.id}`}
+            onMouseOver={() => this.setModalId(customer.id)}
+            onClick={() => this.setModalShow(true)}
           >
             {LABELS.DETTAGLIO}
-          </Link>
+          </button>
         ),
       },
     ],
     currentPage: 1,
     pageSize: 5,
     sortColumn: { path: "branch", order: "asc" },
+    modalData: { id: null, show: false },
   };
 
   componentWillReceiveProps() {
     this.setState({
       currentPage: 1,
       sortColumn: { path: "branch", order: "asc" },
+      modalData: { id: null, show: false },
     });
   }
 
@@ -87,13 +91,33 @@ class SearchTable extends Component {
     }
   };
 
+  setModalId = (id) => {
+    let modalData = { ...this.state.modalData };
+    modalData.id = id;
+    this.setState({ modalData });
+  };
+
+  setModalShow = (show) => {
+    let modalData = { ...this.state.modalData };
+    modalData.show = show;
+    this.setState({ modalData });
+  };
+
   render() {
-    const { columns, sortColumn, pageSize, currentPage } = this.state;
+    const {
+      columns,
+      sortColumn,
+      pageSize,
+      currentPage,
+      modalData,
+    } = this.state;
     const { totalCount, customers, message } = this.getPagedData();
 
     return (
       <React.Fragment>
-        <p className="font-weight-bold">{message}</p>
+        {(this.context.isSearching && <Spinner />) || (
+          <p className="font-weight-bold">{message}</p>
+        )}
         <Table
           columns={columns}
           sortColumn={sortColumn}
@@ -106,9 +130,16 @@ class SearchTable extends Component {
           currentPage={currentPage}
           onPageChange={this.handlePageChange}
         />
+        <CustomerModal
+          id={modalData.id}
+          show={modalData.show}
+          setModalData={() => {
+            this.setState({ modalData: { id: null, show: false } });
+          }}
+        />
       </React.Fragment>
     );
   }
 }
 
-export default SearchTable;
+export default SearchingTable;

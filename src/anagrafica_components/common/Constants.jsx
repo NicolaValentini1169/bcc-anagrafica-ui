@@ -4,41 +4,60 @@ export const USER_TYPE = {
 };
 
 export const LABELS = {
-  CAB: "Cab:",
-  RICERCA_CLIENTE: "Ricerca Clienti",
-  FILIALE: "* Filiale:",
-  FILIALE_TO_SHOW: "Filiale:",
-  NAG: "* NAG:",
-  NAG_TO_SHOW: "NAG",
-  NOME: "Nome:",
-  DATA_DI_NASCITA: "Data di nascita:",
-  ATTENZIONE: "ATTENZIONE",
-  ANAGRAFICA_CLIENTE_TEXT: "L'anagrafica del cliente è già stata verificata in",
-  DATA_INSERITA: "data ",
-  CODICE_UNIVOCO: "Il codice univoco assegnato è ",
-  SCARICA: "SCARICA",
-  CERCA: "CERCA",
-  LOGOUT: "LOGOUT",
-  OPERAZIONE_COMPLETATA: "Operazione Completata",
-  CODICE_ASSEGNATO: "Il codice assegnato al cliente è",
-  NUOVA_RICERCA: "Nuova Ricerca",
-  CLIENTE: "Cliente",
-  CAMPI_MODIFICATI: "Campi modificati",
+  // labels data
   NOME_BATTESIMO: "Nome di battesimo:",
   NUMERO_TELEFONO: "Numero di telefono:",
   EMAIL: "Email:",
   PRIVACY: "Privacy:",
   FIRMA_GRAFOMETRICA: "Firma grafometrica:",
-  CONFERMA: "Conferma",
+  CAB: "Cab:",
+  FILIALE_TO_SHOW: "Filiale:",
+  NAG_TO_SHOW: "NAG:",
+  NOME: "Nome:",
+  DATA_DI_NASCITA: "Data di nascita:",
+
+  // labels form
+  FILIALE_FORM: "Seleziona filiale*",
+  NAG_FORM: "NAG*",
+  NOME_FORM: "Nome",
+  DATA_DI_NASCITA_FORM: "Data di nascita",
+  CAMPI_OBBLIGATORI: "* Campi obbligatori",
+  CERCA: "CERCA",
   DETTAGLIO: "Dettaglio",
+
+  // labels modal
+  ANNULLA: "Annulla",
+  CONFERMA: "Conferma",
+  CODICE_UNIVOCO: "Il codice univoco assegnato è ",
+  CLIENTE: "Cliente",
+  CAMPI_MODIFICATI: "Campi modificati",
+  CAMPI_MODIFICABILI: "Campi modificabili",
+
+  // labels errors
+  NAG_ERROR: "Il nag deve essere di almeno tre caratteri",
+  FILIALE_ERROR: "Selezionare una filiale",
+  DATA_DI_NASCITA_ERROR: "Le date accettabili vanno dal '01/01/1900' a oggi",
+
+  // labels table
+  NESSUNA_CORRISPONDENZA: "Nessuna corrispondenza trovata",
+  OPERAZIONE_COMPLETATA: "Operazione Completata",
+  NUOVA_RICERCA: "Nuova Ricerca",
+
+  // labels navbar
+  RICERCA_CLIENTE: "Ricerca Clienti",
+  IMPORTA_CLIENTI: "Importa Clienti",
+
+  // other labels
+  ATTENZIONE: "ATTENZIONE",
+  ANAGRAFICA_CLIENTE_TEXT: "L'anagrafica del cliente è già stata verificata in",
+  DATA_INSERITA: "data ",
+  SCARICA: "SCARICA",
+  LOGOUT: "LOGOUT",
+  CODICE_ASSEGNATO: "Il codice assegnato al cliente è",
   TORNA_ALLA_LISTA: "Torna alla lista",
   SI: "Si",
   NO: "No",
   NON_IMPOSTATA: "Non impostata",
-  CAMPI_OBBLIGATORI: "* Campi obbligatori",
-  NAG_ERROR: "Il nag deve essere di almeno tre caratteri",
-  FILIALE_ERROR: "Selezionare una filiale",
-  NESSUNA_CORRISPONDENZA: "Nessuna corrispondenza trovata",
 };
 
 export const REPORT_LABELS = {
@@ -62,7 +81,6 @@ export const ROUTES = {
   LOGIN: "login",
   RICERCA_CLIENTI: "ricerca-clienti",
   IMPORTA_CLIENTI: "importa-clienti",
-  VISUALIZZA_CLIENTE: "visualizza-cliente/:id",
   RICERCA_COMPLETATA: "ricerca-completata",
   REPORT: "report",
 };

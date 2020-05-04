@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import auth from "../services/authService";
+import { ROUTES } from "./common/Constants";
 
 export class Login extends Component {
   state = {
@@ -16,7 +19,9 @@ export class Login extends Component {
   };
 
   render() {
+    if (auth.getJwt()) return <Redirect to={"/" + ROUTES.RICERCA_CLIENTI} />;
     const { login } = this.state;
+
     return (
       <div className="backgroundColor">
         <div className="container">

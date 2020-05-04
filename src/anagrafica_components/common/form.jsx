@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Joi from "joi-browser";
-import Input from "./input";
-import Select from "./select";
+import Input from "./Input";
+import Select from "./Select";
 
 class Form extends Component {
   state = {
@@ -41,10 +41,28 @@ class Form extends Component {
     if (errorMessage) errors = errorMessage;
     else errors = "";
 
+    input.className = this.setValidation(input.className, errors);
+    // non mostra sempre la V verde o la X rossa
+    this.setState({ errors });
+
     const data = { ...this.state.data };
     data[input.name] = input.value;
 
-    this.setState({ data, errors });
+    this.setState({ data });
+  };
+
+  setValidation = (classes, errors) => {
+    if (errors === "") {
+      if (classes.includes("is-invalid"))
+        return classes.replace("is-invalid", "is-valid");
+      else if (classes.includes("is-valid")) return classes;
+      else return (classes += "is-valid");
+    } else {
+      if (classes.includes("is-valid"))
+        return classes.replace("is-valid", "is-invalid");
+      else if (classes.includes("is-invalid")) return classes;
+      else return (classes += "is-invalid");
+    }
   };
 
   renderSelect(name, label, options, rest) {
@@ -60,9 +78,10 @@ class Form extends Component {
     );
   }
 
-  renderInput(name, rest, type = "text") {
+  renderInput(name, label, type = "text", rest) {
     return (
       <Input
+        label={label}
         type={type}
         name={name}
         value={this.state.data[name]}
