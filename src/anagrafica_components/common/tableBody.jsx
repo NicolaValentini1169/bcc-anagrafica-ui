@@ -5,7 +5,14 @@ class TableBody extends Component {
   renderCell = (item, column) => {
     if (column.content) return column.content(item);
 
-    return _.get(item, column.path);
+    const res =
+      _.get(item, column.path) === true
+        ? "Si"
+        : _.get(item, column.path) === false
+        ? "No"
+        : _.get(item, column.path);
+
+    return res;
   };
 
   createKey = (item, column) => {

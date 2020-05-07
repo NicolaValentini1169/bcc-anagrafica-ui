@@ -66,14 +66,12 @@ class App extends Component {
   };
 
   setCustomers = (customers) => {
-    console.log("customers", customers);
     customers.map(
       (c) => (
         (c.dataNascita = dateFormatter(c.dataNascita)),
         (c.lastModify = dateFormatter(c.lastModify))
       )
     );
-    console.log("customers", customers);
 
     let customerContextParams = { ...this.state.customerContextParams };
     customerContextParams.customers = customers;

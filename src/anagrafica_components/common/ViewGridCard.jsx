@@ -5,8 +5,8 @@ class ViewGridCard extends Component {
     if (data instanceof Object) return data.nome.toString() || "campo vuoto";
     if (data === undefined) return "campo vuoto";
     if (data === null) return "campo vuoto";
-    if (data === true) return "1";
-    if (data === false) return "0";
+    if (data === true) return "Si";
+    if (data === false) return "No";
     else return data.toString() || "campo vuoto";
   };
 

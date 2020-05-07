@@ -156,20 +156,20 @@ class CustomerModal extends Component {
         messageModalJustConfirmed(customer)
       );
       footer = {
-        dangerButtonFunction: this.handleClose,
-        dangerButtonLabel: LABELS.TORNA_ALLA_LISTA,
-        successButtonFunction: this.handleClose,
-        successButtonLabel: LABELS.SCARICA,
+        firstButtonFunction: this.handleClose,
+        firstButtonLabel: LABELS.TORNA_ALLA_LISTA,
+        secondButtonFunction: this.handleClose,
+        secondButtonLabel: LABELS.SCARICA,
       };
     } else if (customer.confermato && !customerIsUpdated) {
       // setta i dati del modal per i clienti gia confemrati
       header = LABELS.ATTENZIONE;
       body = messageModalAlreadyConfirmed(customer);
       footer = {
-        dangerButtonFunction: this.handleClose,
-        dangerButtonLabel: LABELS.TORNA_ALLA_LISTA,
-        successButtonFunction: this.handleClose,
-        successButtonLabel: LABELS.SCARICA,
+        firstButtonFunction: this.handleClose,
+        firstButtonLabel: LABELS.TORNA_ALLA_LISTA,
+        secondButtonFunction: this.handleClose,
+        secondButtonLabel: LABELS.SCARICA,
       };
     } else {
       // setta i dati del modal per il cliente che deve ancora confermare
@@ -191,10 +191,10 @@ class CustomerModal extends Component {
         </React.Fragment>
       );
       footer = {
-        dangerButtonFunction: this.handleSubmit,
-        dangerButtonLabel: LABELS.ANNULLA,
-        successButtonFunction: this.handleSubmit,
-        successButtonLabel: LABELS.CONFERMA,
+        firstButtonFunction: this.handleSubmit,
+        firstButtonLabel: LABELS.ANNULLA,
+        secondButtonFunction: this.handleSubmit,
+        secondButtonLabel: LABELS.CONFERMA,
       };
     }
 

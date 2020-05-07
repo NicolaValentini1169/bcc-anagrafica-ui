@@ -14,17 +14,17 @@ function PersonalModal(props) {
         <Modal.Footer>
           <button
             name="btn-cancel"
-            className="button-grid-card btn btn-danger"
-            onClick={props.footer.dangerButtonFunction}
+            className="button-grid-card btn btn-success"
+            onClick={props.footer.firstButtonFunction}
           >
-            {props.footer.dangerButtonLabel}
+            {props.footer.firstButtonLabel}
           </button>
           <button
             name="btn-confirm"
             className="button-grid-card btn btn-success"
-            onClick={props.footer.successButtonFunction}
+            onClick={props.footer.secondButtonFunction}
           >
-            {props.footer.successButtonLabel}
+            {props.footer.secondButtonLabel}
           </button>
         </Modal.Footer>
       )}

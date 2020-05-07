@@ -18,6 +18,7 @@ class SearchingTable extends Component {
       { path: "nag", label: LABELS.NAG_TO_SHOW },
       { path: "nome", label: LABELS.NOME },
       { path: "dataNascita", label: LABELS.DATA_DI_NASCITA },
+      { path: "confermato", label: LABELS.CONFERMATO },
       {
         key: "dattaglio",
         content: (customer) => (
@@ -112,6 +113,7 @@ class SearchingTable extends Component {
       modalData,
     } = this.state;
     const { totalCount, customers, message } = this.getPagedData();
+    console.log("customers in table", customers);
 
     return (
       <React.Fragment>

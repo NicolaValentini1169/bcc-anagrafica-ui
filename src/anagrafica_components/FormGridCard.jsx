@@ -6,12 +6,12 @@ class FormGridCard extends Component {
   static contextType = CustomersContext;
 
   getData = (data) => {
-    if (data instanceof Object) return data.nome.toString() || "campo vuoto";
-    if (data === undefined) return "campo vuoto";
-    if (data === null) return "campo vuoto";
-    if (data === true) return "1";
-    if (data === false) return "0";
-    else return data.toString() || "campo vuoto";
+    if (data instanceof Object) return data.nome.toString() || " ";
+    if (data === undefined) return " ";
+    if (data === null) return " ";
+    if (data === true) return "Si";
+    if (data === false) return "No";
+    else return data.toString() || " ";
   };
 
   handleChange = (key, value) => {

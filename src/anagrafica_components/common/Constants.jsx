@@ -51,6 +51,7 @@ export const LABELS = {
   ATTENZIONE: "ATTENZIONE",
   ANAGRAFICA_CLIENTE_TEXT: "L'anagrafica del cliente è già stata verificata in",
   DATA_INSERITA: "data ",
+  CONFERMATO: "Confermato:",
   SCARICA: "SCARICA",
   LOGOUT: "LOGOUT",
   CODICE_ASSEGNATO: "Il codice assegnato al cliente è",

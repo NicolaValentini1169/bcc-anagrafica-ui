@@ -14,7 +14,7 @@ class SearchingBox extends Form {
   state = {
     data: { branch: 0, nag: "", customerName: "", birthDate: "" },
     errors: "",
-    branchs: [],
+    branchs: null,
     serverResponse: true,
   };
 
